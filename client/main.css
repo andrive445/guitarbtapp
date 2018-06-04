@@ -107,6 +107,151 @@ a {
     padding: 5px;
 }
 
+.guitrabox-link {
+    cursor: pointer;
+}
+
+.about-us-para {
+    background: #eee;
+    padding: 10px;
+}
+
+/* *******************************Accessories********************************* */
+
+.accessr-row{
+    background: #eee;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.accessr-col {
+    margin-bottom: 10px;
+}
+.accessr-box {
+    background: #FFF;
+}
+
+.accessr-detail {
+    background: #444;
+    color: #fff;
+    padding: 5px;
+}
+
+.accessr-price  {
+    background: #dc3545;
+    display: inline-block;
+    padding: 1px 11px;
+}
+
+.accessr-text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.accessr-buy {
+    background: #007bff;
+    text-align: center;
+    border-radius: 15px;
+    padding: 2px 0px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.accessr-buy:hover {
+    background: #6a737d;
+}
+
+.accessr-size, .accessr-small, .accessr-med, .accessr-large {
+    display: inline-block
+}
+
+.accessr-small:hover, .accessr-med:hover, .accessr-large:hover {
+    background: #000;
+    /* padding: 5px 10px; */
+    /* border-radius: 5px; */
+}
+
+.accessr-size {
+    background: #eee;
+    padding: 0px 0px 0px 10px;
+    margin-left: 5px;
+    color: #444;
+    transition: all 0.3s ease-in-out;    
+}
+.accessr-small{
+    padding: 0px 10px;
+    background: #009688;
+    margin-left: 5px;
+    color: #FFF;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    
+}
+.accessr-med {
+    padding: 0px 10px;
+    background: #3F51B5;
+    color: #FFF;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.accessr-large {
+    padding: 0px 10px;
+    background: #FF5722;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/* ====================== Guitar Details================== */
+.guitar-detail-row {
+    background: #eee;
+    padding-top: 10px;
+}
+
+.guitar-d-info {
+    padding: 10px;
+    background: #ddd;
+    color: #444;
+    font-size: 15px;
+}
+
+.guitar-d-con {
+    margin-bottom: 10px;
+    /* margin-top: 10px; */
+}
+.guitar-ava-span{
+    background: #4CAF50;
+    padding: 0px 10px;
+    color: #fff;
+}
+
+.guitar-detail-col {
+    /* align-items: center;
+    justify-content: center;
+    display: flex; */
+}
+
+.guitar-detail-box2 {
+    padding-bottom: 10px;
+    /* padding-top: 10px; */
+}
+
+.guitar-d-buy {
+    background: #FF9800;
+    display: inline-flex;
+    padding: 3px 50px;
+    border-radius: 20px;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.guitar-d-relatedaccr {
+    background: #F44336;
+    color: #fff;
+    padding: 10px 10px;
+    margin: 0;
+}
 /* ==================== Footer ======================== */
 .guitar-footer {
     background: #007bff !important;

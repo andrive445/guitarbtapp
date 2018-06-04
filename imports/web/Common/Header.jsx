@@ -3,7 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import Swal from 'sweetalert2';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router';
 
 class Header extends Component {
   constructor(props){
@@ -161,22 +161,25 @@ class Header extends Component {
     return (
         <div>
           <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a className="navbar-brand" href="#">
+            <Link className="navbar-brand" to="/">
               <img src="/images/logo.png" className="guitar-nav" />
-            </a>
+            </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarText">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">Home</a>
+                  <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">About Us</a>
+                  <Link className="nav-link" to="/about">About Us</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Accessories</a>
+                  <Link className="nav-link" to="/accessories">Accessories</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/guitarDetails">Accessories Details</Link>
                 </li>
               </ul>
               {
