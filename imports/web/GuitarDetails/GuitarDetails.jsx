@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import AccessoriesBox from '/imports/web/Accessories/AccessoriesBox.jsx';
 
+
+// $(window).scroll(function() {
+//     if($(window).scrollTop() + $(window).height() == $(document).height()) {
+//         alert("bottom!"+$(document).height());
+//     }
+//  });
+ 
 export default class GuitarDetails extends Component {
     render(){
         return(

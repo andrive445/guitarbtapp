@@ -1,3 +1,5 @@
+html { position: relative; min-height: 100%; }
+
 body{
     margin: 0;
     padding: 0;
@@ -6,6 +8,14 @@ a {
     color: #000;
 }
 
+.activeGuitarLink {
+    color:#fff !important;
+    /* font-weight: bold; */
+}
+
+.activeGuitarLinkCom {
+    color: #ddd;
+}
 /* ====================== Header ===================== */
 .guitar-nav{
     width: 50px;
@@ -53,10 +63,139 @@ a {
 
 .guitar-header-cart {
     margin-right: 10px;
-    background: #dee2e6 !important;
+    background: #dee2e6;
     padding: 5px 20px;
     cursor: pointer;
     color: #212529 !important;
+    transition: 0.2s all ease-in;
+}
+
+.guitar-header-cart:hover {
+    text-decoration: none;
+    background: #444;
+    color: #fff !important;
+}
+
+.guitar-header-cart:hover .guitar-cart-count{
+    text-decoration: none;
+    background: #fff;
+    color: #444;
+}
+
+
+/* =========================== Cart ===================== */
+.guitar-cart-empty {
+    text-align: center;
+}
+
+.cart-empty-img {
+    cursor: pointer;
+}
+
+@media (max-width:500px) {
+    .cart-empty-img {
+        width: 100%;
+    }
+
+    .guitar-cart-tablerow {
+        display: none;
+    }
+}
+
+.guitar-cart-table {
+    background: #eee;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.guitar-cart-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.guitar-cart-imgbox {
+    overflow: hidden;
+}
+
+.guitar-cart-img {
+    width:100%;
+}
+
+.guitar-cart-tablerow {
+    background: #007bff;
+    color: #fff;
+    /* margin-top: 10px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 2px 2px 1px #086bd6;
+    margin-bottom: 7px;
+}
+
+.cart-total-billed {
+    background: #eee;
+    border: 2px solid #ccc;
+    min-height: 230px;
+    padding: 10px;
+    font-family: sans-serif;
+}
+
+.cart-bill-summery {
+    text-align: center;
+    background: #444;
+    color: #fff;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+.cart-totalitems, .cart-subtotal, .cart-gst {
+    margin: 10px 0px;
+}
+
+.cart-estimate-total {
+    margin: 10px 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.place-order {
+    text-align: center;
+    background: #4CAF50;
+    border-radius: 20px;
+    width: 100%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.carttablerow {
+    border-bottom: 10px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.guitar-cart-imgbox{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.guitar-cart-d-view {
+    background: #607D8B;
+    text-align: center;
+    margin-top: 10px;
+    color: #fff;
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.guitar-cart-d-view:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.guitar-cart-delete {
+    display: inline-block;
+    background: #F44336;
+    color: #fff;
+    padding: 2px 10px;
 }
 /* ===================== Body Homapage ================== */
 .guitar-search {
@@ -116,6 +255,17 @@ a {
     padding: 10px;
 }
 
+
+/* **********************************User Orders****************************** */
+.guitar-u-orders {
+    min-height: 400px;
+}
+.guitar-uo-detailbtn {
+    background: #FF5722;
+    text-align: center;
+    padding: 1px 10px;
+    color: #fff;
+}
 /* *******************************Accessories********************************* */
 
 .accessr-row{
@@ -265,4 +415,46 @@ a {
 }
 .guitar-footer-icons, .guitar-footer-text {
     color: #fff;
+}
+
+
+/* =================================================
+============Admin Dashboard Css=====================
+================================================= */
+.giutar-admin-nav {
+    background-color: #e74c3c;
+    border-color: #c0392b;
+    padding-top: 0 ;
+    padding-bottom: 0 ;
+}
+
+.giutar-admin-nav .navbar-brand {
+    color: #fff !important;
+}
+
+.guitar-admin-logout, .guitar-admin-username {
+    display: block;
+}
+
+.guitar-admin-username {
+    margin-right: 10px;
+}
+
+.guitar-admin-footer {
+    background: #444;
+    color: #fff;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.admin-wrapper{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dashboard-header {
+    background: #e74c3c;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0px;
 }

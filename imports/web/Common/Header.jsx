@@ -105,25 +105,31 @@ class Header extends Component {
           console.log("Cannot create user");
         }
         if(result){
-          Swal({
-            position: 'center',
-            type: 'success',
-            title: 'Account Created Successfully.',
-            showConfirmButton: false,
-            timer: 1500
+         
+          // var userId = Meteor.userId();
+          Meteor.call("addGuitarUserRole", (error, result)=>{
+            if(result){
+              Swal({
+                position: 'center',
+                type: 'success',
+                title: 'Account Created Successfully.',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              this.setState({
+                loginState : true,
+                userInputName : "",
+                userInputEmail : "",
+                userInputAddress : "",  
+                userInputCity : "", 
+                userInputState : "", 
+                userInputZip : "", 
+                userInputPassword1 : "", 
+                userInputPassword2 : "",
+              });
+              $("#guitarLogin").modal("hide");
+            }
           });
-          this.setState({
-            loginState : true,
-            userInputName : "",
-            userInputEmail : "",
-            userInputAddress : "",  
-            userInputCity : "", 
-            userInputState : "", 
-            userInputZip : "", 
-            userInputPassword1 : "", 
-            userInputPassword2 : "",
-          });
-          $("#guitarLogin").modal("hide");
         }
       });
     }else{
@@ -170,23 +176,26 @@ class Header extends Component {
             <div className="collapse navbar-collapse" id="navbarText">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                  <Link className="nav-link" to="/">Home</Link>
+                  <Link activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/about">About Us</Link>
+                  <Link activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/about">About Us</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/accessories">Accessories</Link>
+                  <Link activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/accessories">Accessories</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/guitarDetails">Accessories Details</Link>
+                  <Link  activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/guitarDetails">Accessories Details</Link>
+                </li>
+                <li className="nav-item">
+                  <Link activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/userOrders">Your Orders</Link>
                 </li>
               </ul>
               {
                 this.props.userId ?
-                  <span className="navbar-text guitar-header-cart">
+                  <Link to="/cart" className="navbar-text guitar-header-cart">
                     Cart <span className="guitar-cart-count" >1</span>
-                  </span>
+                  </Link>
                   :
                   null
               }
