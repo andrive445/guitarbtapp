@@ -5,12 +5,6 @@ import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Guitar } from '/imports/api/Guitar.js';
-
-// $(window).scroll(function() {
-//     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-//         alert("bottom!"+$(document).height());
-//     }
-//  });
  
 class GuitarDetails extends Component {
     constructor(props){

@@ -193,9 +193,9 @@ class Header extends Component {
                 <li className="nav-item">
                   <Link activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/accessories">Accessories</Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link  activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/guitarDetails">Accessories Details</Link>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <Link activeClassName="activeGuitarLink" className="nav-link activeGuitarLinkCom" to="/userOrders">Your Orders</Link>
                 </li>

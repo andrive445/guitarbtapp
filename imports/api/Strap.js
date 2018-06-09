@@ -13,7 +13,7 @@ if(Meteor.isServer){
             var strapVal = Strap.insert({
                                 strapName   : strapName,
                                 strapPrice  : strapPrice,
-                                baseType    : "starp",
+                                baseType    : "strap",
                                 createdAt   : new Date(),
                             });
             return strapVal;
