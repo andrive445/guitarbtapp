@@ -17,6 +17,8 @@ import AdminHeader from '/imports/admin/Common/AdminHeader.jsx';
 import AdminFooter from '/imports/admin/Common/AdminFooter.jsx';
 import Sidebar from '/imports/admin/Common/Sidebar.jsx';
 import Dashboard from '/imports/admin/Dashboard/Dashboard.jsx';
+import AddNewGuitar from '/imports/admin/AddNewGuitar/AddNewGuitar.jsx';
+import AddAccessories from '/imports/admin/AddAccessories/AddAccessories.jsx';
 
 
 // ******************************* Component To Render Start ****************************
@@ -75,6 +77,9 @@ Meteor.startup(() => {
         </Route>
         <Route path='/' component = { AdminWebsite}>
             <Route path="/dashboard" component = {Dashboard} />
+            <Route path="/addNewGuitar" component = {AddNewGuitar} />
+            <Route path="/addAccessories" component = {AddAccessories} />
+            <Route path="/addAccessories/:id" component = {AddAccessories} />
         </Route>
     </Router>
     , document.getElementById('render-target'));

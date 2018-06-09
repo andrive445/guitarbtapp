@@ -1,169 +1,149 @@
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import classNames from 'classnames';
-// import { withStyles } from '@material-ui/core/styles';
-// import Drawer from '@material-ui/core/Drawer';
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import Typography from '@material-ui/core/Typography';
-// import Divider from '@material-ui/core/Divider';
-// import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/Inbox';
-// import DraftsIcon from '@material-ui/icons/Drafts';
-// import MenuIcon from '@material-ui/icons/Menu';
-// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-// // import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import React, { Component } from 'react';
 
-// const drawerWidth = 240;
+export default class AddNewGuitar extends Component {
+    render(){
+        return(
+            <div className="guitar-dashboard">
+                <div className="card">
+                    <h5 className="card-header addNewGuitar-header">Add New Guitar</h5>
+                    <div className="card-body">
+                        <form>
+                            <div className="row">
+                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <label htmlFor="guitarName">Guitar Name</label>
+                                        <input type="text" className="form-control" id="guitarName" placeholder="Guitar Name" />
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <label htmlFor="guitarBrand">Guitar Brand</label>
+                                        <input type="text" className="form-control" id="guitarBrand" placeholder="Guitar Brand" />
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <label htmlFor="guitarSerialNumber">Guitar Serial Number</label>
+                                        <input type="text" className="form-control" id="guitarSerialNumber" placeholder="Guitar Serial Number" />
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <label htmlFor="guitarType">Guitar Type</label>
+                                        <select className="form-control" id="guitarType">
+                                            <option>Acoustic</option>
+                                            <option>Electric</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <label htmlFor="guitarNoOfStrings">Number of Strings</label>
+                                        <select className="form-control" id="guitarNoOfStrings">
+                                            <option>4</option>
+                                            <option>6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <label htmlFor="guitarPrice">Price</label>
+                                        <input type="number" className="form-control" id="guitarPrice" placeholder="Price" />
+                                    </div>
+                                </div>
+                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <label htmlFor="guitarInformation">Guitar Information</label>
+                                        <textarea className="form-control" id="guitarInformation" rows="3" placeholder="Guitar Information"></textarea>
+                                    </div>
+                                </div>
+                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div className="form-group">
+                                        <input type="submit" className="btn btn-success" value="Add New Guitar" />
+                                        <div className="btn btn-danger ml-3 addNewGuitarCancel">Cancel</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
 
-// const styles = theme => ({
-//   root: {
-//     flexGrow: 1,
-//     height: "100%",
-//     zIndex: 1,
-//     overflow: 'hidden',
-//     position: 'relative',
-//     display: 'flex',
-//   },
-//   appBar: {
-//     zIndex: theme.zIndex.drawer + 1,
-//     transition: theme.transitions.create(['width', 'margin'], {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.leavingScreen,
-//     }),
-//   },
-//   appBarShift: {
-//     marginLeft: drawerWidth,
-//     width: `calc(100% - ${drawerWidth}px)`,
-//     transition: theme.transitions.create(['width', 'margin'], {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//   },
-//   menuButton: {
-//     marginLeft: 12,
-//     marginRight: 36,
-//   },
-//   hide: {
-//     display: 'none',
-//   },
-//   drawerPaper: {
-//     position: 'relative',
-//     whiteSpace: 'nowrap',
-//     width: drawerWidth,
-//     transition: theme.transitions.create('width', {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//   },
-//   drawerPaperClose: {
-//     overflowX: 'hidden',
-//     transition: theme.transitions.create('width', {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.leavingScreen,
-//     }),
-//     width: theme.spacing.unit * 7,
-//     [theme.breakpoints.up('sm')]: {
-//       width: theme.spacing.unit * 9,
-//     },
-//   },
-//   toolbar: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'flex-end',
-//     padding: '0 8px',
-//     ...theme.mixins.toolbar,
-//   },
-//   content: {
-//     flexGrow: 1,
-//     backgroundColor: theme.palette.background.default,
-//     padding: theme.spacing.unit * 3,
-//   },
-// });
-
-// class AddNewGuitar extends React.Component {
-//   state = {
-//     open: false,
-//   };
-
-//   handleDrawerOpen = () => {
-//     this.setState({ open: true });
-//   };
-
-//   handleDrawerClose = () => {
-//     this.setState({ open: false });
-//   };
-
-//   render() {
-//     const { classes, theme } = this.props;
-
-//     return (
-//       <div className={classes.root}>
-//         <AppBar
-//           position="absolute"
-//           className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-//         >
-//           <Toolbar disableGutters={!this.state.open}>
-//             <IconButton
-//               color="inherit"
-//               aria-label="open drawer"
-//               onClick={this.handleDrawerOpen}
-//               className={classNames(classes.menuButton, this.state.open && classes.hide)}
-//             >
-//               <MenuIcon />
-//             </IconButton>
-//             <Typography variant="title" color="inherit" noWrap>
-//               Guitar App
-//             </Typography>
-//           </Toolbar>
-//         </AppBar>
-//         <Drawer
-//           variant="permanent"
-//           classes={{
-//             paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-//           }}
-//           open={this.state.open}
-//         >
-//           <div className={classes.toolbar}>
-//             <IconButton onClick={this.handleDrawerClose}>
-//               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-//             </IconButton>
-//           </div>
-//           <Divider />
-//         <List component="nav">
-//             <ListItem button>
-//                 <ListItemIcon>
-//                     <InboxIcon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Inbox" />
-//             </ListItem>
-//             <ListItem button>
-//                 <ListItemIcon>
-//                     <DraftsIcon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Drafts" />
-//             </ListItem>
-//         </List>
-//           <Divider />
-//           {/* <List>{otherMailFolderListItems}</List> */}
-//         </Drawer>
-//         <main className={classes.content}>
-//           <div className={classes.toolbar} />
-//           <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
-//         </main>
-//       </div>
-//     );
-//   }
-// }
-
-// AddNewGuitar.propTypes = {
-//   classes: PropTypes.object.isRequired,
-//   theme: PropTypes.object.isRequired,
-// };
-
-// export default withStyles(styles, { withTheme: true })(AddNewGuitar);
+                 <div className="card">
+                    <h5 className="card-header addNewGuitar-header">List of Guitar</h5>
+                    <div className="card-body">
+                        <div className="guitar-u-orders container">
+                            
+                            <table className="table table-responsive-sm table-responsive-xs table-striped table-hover">
+                                <thead className="thead-dark">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Order Number</th>
+                                        <th scope="col">Products</th>
+                                        <th scope="col">Total(Rs.)</th>
+                                        <th scope="col">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>AD56GbHIkOLFGH</td>
+                                        <td>
+                                            <div className="guitar-uo-list">
+                                                Products
+                                            </div>
+                                        </td>
+                                        <td>3000</td>
+                                        <td className="text-center">
+                                            <div className="guitar-uo-detailbtn btn">View</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>AD56GbHIkOLFGH</td>
+                                        <td>
+                                            <div className="guitar-uo-list">
+                                                Products
+                                            </div>
+                                        </td>
+                                        <td>3000</td>
+                                        <td className="text-center">
+                                            <div className="guitar-uo-detailbtn btn">View</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>AD56GbHIkOLFGH</td>
+                                        <td>
+                                            <div className="guitar-uo-list">
+                                                Products
+                                            </div>
+                                        </td>
+                                        <td>3000</td>
+                                        <td className="text-center">
+                                            <div className="guitar-uo-detailbtn btn">View</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>AD56GbHIkOLFGH</td>
+                                        <td>
+                                            <div className="guitar-uo-list">
+                                                Products
+                                            </div>
+                                        </td>
+                                        <td>3000</td>
+                                        <td className="text-center">
+                                            <div className="guitar-uo-detailbtn btn">View</div>
+                                        </td>
+                                    </tr>
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
