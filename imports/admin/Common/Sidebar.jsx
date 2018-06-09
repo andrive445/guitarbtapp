@@ -17,7 +17,7 @@ export default class Sidebar extends Component {
                         Accessories
                         <span className="badge badge-primary badge-pill">14</span>
                     </Link>
-                    <Link to="" activeClassName="active" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <Link to="/addNewStrap" activeClassName="active" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         Straps
                         <span className="badge badge-primary badge-pill">14</span>
                     </Link>

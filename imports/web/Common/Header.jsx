@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import Swal from 'sweetalert2';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
+import { Roles } from 'meteor/alanning:roles';
+
 
 class Header extends Component {
   constructor(props){
@@ -72,7 +74,14 @@ class Header extends Component {
     Meteor.logout(()=>{
       this.setState({
         loggedIn : "",
-      })
+      });
+      Swal({
+          position: 'center',
+          type: 'success',
+          title: 'Admin Log Out Successfully',
+          showConfirmButton: false,
+          timer: 1500
+      });
     })
   }
 
@@ -201,6 +210,15 @@ class Header extends Component {
               }
 
               {
+                this.props.adminRole ?
+                  <Link to="/dashboard" className="navbar-text guitar-header-cart">
+                    Dashboard
+                  </Link>
+                  :
+                  null
+              }
+
+              {
                 this.props.userId ?
                   <span className="navbar-text guitar-login" onClick={this.logoutUser.bind(this)}>
                     Logout
@@ -259,7 +277,7 @@ class Header extends Component {
 
                               <div className="form-group">
                                 <label>Address</label>
-                                <input type="text" onChange={this.handleChange.bind(this)} className="form-control" name="userInputAddress" value={this.state.userInputAddress} id="inputAddress" placeholder="1234 Main St" />
+                                <input type="text" onChange={this.handleChange.bind(this)} className="form-control" name="userInputAddress" value={this.state.userInputAddress} id="inputAddress" placeholder="Address" />
                               </div>
 
                               <div className="form-row">
@@ -306,8 +324,11 @@ class Header extends Component {
 }
 
 export default withTracker(() => {
-  const loggingIn = Meteor.userId();
+  const userId = Meteor.userId();
+  var role = Roles.userIsInRole(userId, 'admin');
+
   return {
-    userId : loggingIn,
+    userId : userId,
+    adminRole : role,
   };
 })(Header);

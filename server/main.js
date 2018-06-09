@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import '/imports/api/Accesssory.js'
+import '/imports/api/Accessory.js';
+import '/imports/api/Guitar.js';
+import '/imports/api/Strap.js';
 
 Meteor.startup(() => {
   

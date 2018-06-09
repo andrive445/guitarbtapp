@@ -395,6 +395,12 @@ a {
     color: #fff;
 }
 
+.guitar-noava-span {
+    background: #F44336;
+    padding: 0px 10px;
+    color: #fff;
+}
+
 .guitar-detail-col {
     /* align-items: center;
     justify-content: center;
@@ -451,6 +457,9 @@ a {
 .giutar-admin-nav .navbar-brand {
     color: #fff !important;
 }
+.guitar-admin-logout {
+    cursor: pointer;
+}
 
 .guitar-admin-logout, .guitar-admin-username {
     display: block;
@@ -482,4 +491,18 @@ a {
 .addNewGuitarCancel, .addNewAccessCancel {
     padding-left: 40px;
     padding-right: 40px;
+}
+
+.edit-guitar {
+    width: 100%;
+    /* margin-bottom: 5px; */
+}
+
+.edit-accessory {
+    /* margin-bottom: 5px; */
+}
+
+.activeAdminMenu {
+    color: #fff !important;
+    font-weight: bold;
 }

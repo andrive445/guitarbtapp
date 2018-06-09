@@ -2,35 +2,33 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import Swal from 'sweetalert2';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Accessory } from '/imports/api/Accessory.js';
+import { Strap } from '/imports/api/Strap.js';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import moment from 'moment';
 
-class AddAccessories extends Component {
+class AddStrap extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            accessoryName : '',
-            accessoryType : '--Select--',
-            accessoryPrice : '',
+            strapName : '',
+            strapPrice : '',
         }
 
         this.handleChange = this.handleChange.bind(this);
-        this.submitAccessory = this.submitAccessory.bind(this);
-        this.deleteAccessory = this.deleteAccessory.bind(this);
+        this.submitStrap = this.submitStrap.bind(this);
+        this.deleteStrap = this.deleteStrap.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
-        var data = nextProps.updateAccessoryData;
+        var data = nextProps.updateStrapData;
         if(data){
             this.setState({
-                accessoryName : data.accessoryName,
-                accessoryType : data.accessoryType,
-                accessoryPrice : data.accessoryPrice,
+                strapName : data.strapName,
+                strapPrice : data.strapPrice,
             });
-            $('#accessName').focus();
+            $('#strapName').focus();
         }
     }
 
@@ -42,43 +40,40 @@ class AddAccessories extends Component {
         })
     }
 
-    submitAccessory = (event)=>{
+    submitStrap = (event)=>{
         event.preventDefault();
-        var accessoryName = this.state.accessoryName;
-        var accessoryType = this.state.accessoryType;
-        var accessoryPrice = this.state.accessoryPrice;
+        var strapName = this.state.strapName;
+        var strapPrice = this.state.strapPrice;
 
-        if(accessoryName && accessoryType && accessoryPrice && accessoryType != '--Select--'){
-            if(this.props.accessoryId){    
-                Meteor.call('updateAccessory', this.props.accessoryId, accessoryName, accessoryType, accessoryPrice, (error, result)=>{
+        if(strapName && strapPrice){
+            if(this.props.strapId){    
+                Meteor.call('updateStrap', this.props.strapId, strapName, strapPrice, (error, result)=>{
                     if(result){
                         this.setState({
-                            accessoryName : '',
-                            accessoryType : '--Select--',
-                            accessoryPrice : '',
+                            strapName : '',
+                            strapPrice : '',
                         })
                         Swal({
                             position: 'center',
                             type: 'success',
-                            title: 'Accessory Updated Successfully',
+                            title: 'Strap Updated Successfully',
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        browserHistory.replace("/addAccessories");
+                        browserHistory.replace("/addNewStrap");
                     }
                 })
             } else {
-                Meteor.call('addNewAccessory', accessoryName, accessoryType, accessoryPrice, (error, result)=>{
+                Meteor.call('addNewStrap', strapName, strapPrice, (error, result)=>{
                     if(result){
                         this.setState({
-                            accessoryName : '',
-                            accessoryType : '--Select--',
-                            accessoryPrice : '',
+                            strapName : '',
+                            strapPrice : '',
                         })
                         Swal({
                             position: 'center',
                             type: 'success',
-                            title: 'Accessory Added Successfully',
+                            title: 'Strap Added Successfully',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -96,16 +91,15 @@ class AddAccessories extends Component {
         }
     }
 
-    cancelAccessory = ()=> {
+    cancelStrap = ()=> {
         this.setState({
-            accessoryName : '',
-            accessoryType : '--Select--',
-            accessoryPrice : '',
+            strapName : '',
+            strapPrice : '',
         });
-        browserHistory.replace("/addAccessories");
+        browserHistory.replace("/addNewStrap");
     }
 
-    deleteAccessory = (id)=>{
+    deleteStrap = (id)=>{
         Swal({
             title: 'Are you sure?',
             text: "You want to delete this",
@@ -116,11 +110,11 @@ class AddAccessories extends Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if(result.value){
-                 Meteor.call('deteteAccessory', id, (error, success)=>{
+                 Meteor.call('deteteStrap', id, (error, success)=>{
                     if(success){
                         Swal(
                             '',
-                            'Accessory Deleted Successfully.',
+                            'Strap Deleted Successfully.',
                             'success'
                         )
                     }
@@ -135,36 +129,26 @@ class AddAccessories extends Component {
         return(
             <div className="guitar-dashboard">
                 <div className="card">
-                    <h5 className="card-header addNewAccess-header">{ this.props.accessoryId ? "Update Accessory" : "Add New Accessories"}</h5>
+                    <h5 className="card-header addNewAccess-header">{ this.props.strapId ? "Update Strap" : "Add New Strap"}</h5>
                     <div className="card-body">
-                        <form onSubmit={this.submitAccessory}>
+                        <form onSubmit={this.submitStrap}>
                             <div className="row">
                                 <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <div className="form-group">
-                                        <label htmlFor="accessName">Accessory Name</label>
-                                        <input onChange={this.handleChange} type="text" className="form-control" name="accessoryName" value={this.state.accessoryName} id="accessName" placeholder="Guitar Name" />
+                                        <label htmlFor="strapName">Strap Name</label>
+                                        <input onChange={this.handleChange} type="text" className="form-control" name="strapName" value={this.state.strapName} id="strapName" placeholder="Guitar Name" />
                                     </div>
                                 </div>
                                 <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <div className="form-group">
-                                        <label htmlFor="accessType">Accessory Type</label>
-                                        <select onChange={this.handleChange} className="form-control" name="accessoryType" value={this.state.accessoryType} id="accessType">
-                                            <option>--Select--</option>
-                                            <option>Wooden</option>
-                                            <option>Plastic</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                                    <div className="form-group">
-                                        <label htmlFor="accessPrice">Accessory Price</label>
-                                        <input onChange={this.handleChange} type="number" className="form-control" name="accessoryPrice" value={this.state.accessoryPrice} id="accessPrice" placeholder="Price" />
+                                        <label htmlFor="strapPrice">Strap Price</label>
+                                        <input onChange={this.handleChange} type="number" className="form-control" name="strapPrice" value={this.state.strapPrice} id="accessPrice" placeholder="Price" />
                                     </div>
                                 </div>
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div className="form-group">
-                                        <input type="submit" className="btn btn-success" value={this.props.accessoryId ? "Update Accessory" : "Add New Accessory"} />
-                                        <div onClick={this.cancelAccessory} className="btn btn-danger ml-3 addNewAccessCancel">Cancel</div>
+                                        <input type="submit" className="btn btn-success" value={this.props.strapId ? "Update Strap" : "Add New Strap"} />
+                                        <div onClick={this.cancelStrap} className="btn btn-danger ml-3 addNewAccessCancel">Cancel</div>
                                     </div>
                                 </div>
                             </div> 
@@ -173,17 +157,16 @@ class AddAccessories extends Component {
                 </div>
 
                  <div className="card mt-3">
-                    <h5 className="card-header addNewGuitar-header">List of Accessories</h5>
+                    <h5 className="card-header addNewGuitar-header">List of Strap</h5>
                     <div className="card-body">
                         <div className="guitar-u-orders">
                             {
-                                this.props.accessoryData && this.props.accessoryData.length > 0 ?
+                                this.props.strapData && this.props.strapData.length > 0 ?
                                     <table className="table table-responsive-sm table-responsive-xs table-striped table-hover">
                                         <thead className="thead-dark">
                                             <tr>
                                                 <th scope="col"></th>
                                                 <th scope="col">Name</th>
-                                                <th scope="col">Type</th>
                                                 <th scope="col">Price(Rs.)</th>
                                                 <th scope="col">Added On</th>
                                                 <th scope="col"></th>
@@ -191,22 +174,21 @@ class AddAccessories extends Component {
                                         </thead>
                                         <tbody>
                                             {
-                                                this.props.accessoryData.map((data, index)=>{
+                                                this.props.strapData.map((data, index)=>{
                                                     return(
                                                         <tr key={index}>
                                                             <td scope="row">{index + 1}</td>
-                                                            <td>{data.accessoryName}</td>
-                                                            <td>{data.accessoryType}</td>
-                                                            <td>{data.accessoryPrice}</td>
+                                                            <td>{data.strapName}</td>
+                                                            <td>{data.strapPrice}</td>
                                                             <td>{moment(data.createdAt).fromNow()}</td>
                                                             <td className="text-center">
                                                                 {
-                                                                    this.props.accessoryId ? 
+                                                                    this.props.strapId ? 
                                                                         null
                                                                         :
                                                                         <div>
-                                                                            <Link to={'/addAccessories/'+data._id} className="guitar-ac-btn btn btn-success mr-3 edit-accessory"> Edit </Link>
-                                                                            <div onClick={()=>this.deleteAccessory(data._id)} className="guitar-ac-btn btn btn-danger">Delete</div>
+                                                                            <Link to={'/addNewStrap/'+data._id} className="guitar-ac-btn btn btn-success mr-3 edit-accessory"> Edit </Link>
+                                                                            <div onClick={()=>this.deleteStrap(data._id)} className="guitar-ac-btn btn btn-danger">Delete</div>
                                                                         </div>
                                                                 }
                                                             </td>
@@ -218,7 +200,7 @@ class AddAccessories extends Component {
                                     </table>
                                 :
                                     <div className="jumbotron text-center">
-                                        No Accessories Added Yet
+                                        No Straps Added Yet
                                     </div>
                             }
                             
@@ -232,14 +214,14 @@ class AddAccessories extends Component {
 
 export default withTracker((props)=>{
     var id = props.params.id;
-    var pubHandle = Meteor.subscribe('accessorypublish');
-    var accessoryData = Accessory.find({},{sort:{'createdAt':-1}}).fetch() || [];
-    var updateAccessoryData = Accessory.findOne({"_id":id});
+    var pubHandle = Meteor.subscribe('strappublish');
+    var strapData = Strap.find({},{sort:{'createdAt':-1}}).fetch() || [];
+    var updateStrapData = Strap.findOne({"_id":id});
 
     return {
-        accessoryData       : accessoryData,
-        updateAccessoryData : updateAccessoryData,
+        strapData           : strapData,
+        updateStrapData     : updateStrapData,
         pubHandle           : pubHandle.ready(),
-        accessoryId         : id,
+        strapId             : id,
     }
-})(AddAccessories);
+})(AddStrap);

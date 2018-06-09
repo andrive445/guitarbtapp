@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
-export const Accessory = new Mongo.Collection('acceessory');
+export const Accessory = new Mongo.Collection('accessory');
 
 if(Meteor.isServer){
     Meteor.publish('accessorypublish', function(){
@@ -14,11 +14,12 @@ if(Meteor.isServer){
                                 accessoryName   : accessoryName,
                                 accessoryType   : accessoryType, 
                                 accessoryPrice  : accessoryPrice,
+                                baseType        : "accessory",
                                 createdAt       : new Date(),
                             });
             return accessVal;
         },
-        'addNewAccessory': function(id, accessoryName, accessoryType, accessoryPrice){
+        'updateAccessory': function(id, accessoryName, accessoryType, accessoryPrice){
             var accessVal = Accessory.update(
                             {'_id':id},
                             {
@@ -28,7 +29,7 @@ if(Meteor.isServer){
                                     accessoryPrice  : accessoryPrice,
                                 }
                             });
-                            
+
             return accessVal;
         },
         'deteteAccessory': function(id){
