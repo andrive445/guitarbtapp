@@ -92,6 +92,10 @@ a {
     cursor: pointer;
 }
 
+.guitar-img {
+    background: #fff;
+}
+
 @media (max-width:500px) {
     .cart-empty-img {
         width: 100%;
