@@ -31,7 +31,6 @@ class Dashboard extends Component {
     }
 
     render(){
-        console.log('this.state.dashboardData: ', this.state.dashboardData);
         return(
             <div className="guitar-dashboard">
                 <div className="card">
