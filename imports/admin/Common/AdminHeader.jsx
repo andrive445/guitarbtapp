@@ -42,7 +42,7 @@ export default class AdminHeader extends Component {
                                 <Link activeClassName='activeAdminMenu' className="nav-link text-white" to="/addNewStrap">Straps</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white" href="#">Orders</a>
+                                <Link activeClassName='activeAdminMenu' className="nav-link text-white" to="/adminOrders">Orders</Link>
                             </li>
                             <li className="nav-item active">
                                 <Link className="nav-link text-white" to="/">Visit Guitarist</Link>
