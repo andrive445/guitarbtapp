@@ -21,6 +21,7 @@ import Dashboard from '/imports/admin/Dashboard/Dashboard.jsx';
 import AddNewGuitar from '/imports/admin/AddNewGuitar/AddNewGuitar.jsx';
 import AddAccessories from '/imports/admin/AddAccessories/AddAccessories.jsx';
 import AddStrap from '/imports/admin/AddStrap/AddStrap.jsx';
+import OrdersList from '/imports/admin/OrdersList/OrdersList.jsx';
 import Forbidden from '/imports/web/Common/Forbidden.jsx';
 
 
@@ -95,6 +96,7 @@ Meteor.startup(() => {
             <Route path="/addAccessories/:id" component = {AddAccessories} onEnter={this.checkAdminPageAuth()} />
             <Route path="/addNewStrap" component = {AddStrap} onEnter={this.checkAdminPageAuth()} />
             <Route path="/addNewStrap/:id" component = {AddStrap} onEnter={this.checkAdminPageAuth()} />
+            <Route path="/adminOrders" component = {OrdersList} onEnter={this.checkAdminPageAuth()} />
         </Route>
         <Route path="/forbidden" component = {Forbidden} />
         

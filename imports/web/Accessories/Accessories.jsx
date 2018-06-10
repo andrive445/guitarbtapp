@@ -5,11 +5,11 @@ export default class Accessories extends Component {
         return(
             <div className="guitar-accessr-container container-fluid">
                 <h1 className="accessr text-center">
-                    Lot'z of Accessories
+                    Lot's of Accessories
                 </h1>
-                <h4 className="accessr-para">
+                {/* <h4 className="accessr-para">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt sapiente eius deserunt amet, quam sint autem cumque maiores dolor repellendus reprehenderit alias accusantium, asperiores aspernatur a aliquid numquam blanditiis est sit similique. Nulla, repellendus rem. Atque quis, earum praesentium in inventore ipsum! Sapiente consectetur adipisci sed iusto dolores, debitis vel!
-                </h4>
+                </h4> */}
                 <AccessoriesBox />
             </div>    
         );

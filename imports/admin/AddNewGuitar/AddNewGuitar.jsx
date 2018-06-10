@@ -18,6 +18,7 @@ class AddNewGuitar extends Component {
             guitarNoOfStrings   : '--Select--',
             guitarPrice         : '',
             guitarInformation   : '',
+            guitarStatus        : 'unsold',
         }
         this.handleChange = this.handleChange.bind(this);
         this.submitGuitar = this.submitGuitar.bind(this);
@@ -35,6 +36,7 @@ class AddNewGuitar extends Component {
                 guitarNoOfStrings   : data.guitarNoOfStrings,
                 guitarPrice         : data.guitarPrice,
                 guitarInformation   : data.guitarInformation,
+                guitarStatus        : data.status,
             });
             $('#guitarName').focus();
         }
@@ -201,7 +203,7 @@ class AddNewGuitar extends Component {
                                 <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <div className="form-group">
                                         <label htmlFor="guitarPrice">Price</label>
-                                        <input type="number" className="form-control" id="guitarPrice" value={this.state.guitarPrice} name="guitarPrice" onChange={this.handleChange} placeholder="Price" />
+                                        <input disabled={this.state.guitarStatus == "sold" ? true : false} type="number" className="form-control" id="guitarPrice" value={this.state.guitarPrice} name="guitarPrice" onChange={this.handleChange} placeholder="Price" />
                                     </div>
                                 </div>
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -238,6 +240,7 @@ class AddNewGuitar extends Component {
                                                 <th scope="col">Strings</th>
                                                 <th scope="col">Price(Rs.)</th>
                                                 <th scope="col">Added On</th>
+                                                <th scope="col">Sold On</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
@@ -254,6 +257,7 @@ class AddNewGuitar extends Component {
                                                             <td>{data.guitarNoOfStrings}</td>
                                                             <td>{data.guitarPrice}</td>
                                                             <td>{moment(data.createdAt).fromNow()}</td>
+                                                            <td>{data.soldOn ? moment(data.soldOn).fromNow() : null}</td>
                                                             <td className="text-center">
                                                                 {
                                                                     this.props.guitarId ? 

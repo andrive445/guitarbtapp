@@ -5,10 +5,74 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Strap } from '/imports/api/Strap.js';
 import { Accessory } from '/imports/api/Accessory.js';
+import Swal from 'sweetalert2';
 
 class AccessoriesBox extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            strapSize : '',
+            selectedId : '',
+        }
+        this.buyAccessory = this.buyAccessory.bind(this);
+        this.setStrapSize = this.setStrapSize.bind(this);
+    }
+
+
+    setStrapSize = (strap, selectedId)=> {
+        this.setState({
+            strapSize : strap,
+            selectedId : selectedId,
+        })
+    }
+
+
+    buyAccessory = (accessoryData)=>{
+        var userId = Meteor.userId();
+        if(userId){
+            if(accessoryData.baseType == 'strap'){
+                var strapSize = this.state.strapSize;
+                if(strapSize){
+                    Meteor.call('addToCartSrap', accessoryData, strapSize, (error, result)=>{
+                        if(result){
+                            Swal({
+                                position: 'center',
+                                type: 'success',
+                                title: 'Strap Added to Cart',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            this.setState({
+                                strapSize : "",
+                                selectedId : "",
+                            })
+                        }
+                    });
+                } else {
+                    Swal({
+                        position: 'center',
+                        type: 'warning',
+                        title: 'Please select Strap Size First',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            } else {
+                Meteor.call('addToCartAccessory', accessoryData, (error, result)=>{
+                    if(result){
+                        Swal({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Accessory Added to Cart',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                });
+            }
+        }else{
+              $("#guitarLogin").modal("show");
+        }
     }
 
     render(){
@@ -29,15 +93,15 @@ class AccessoriesBox extends Component {
                                                 data.baseType == "strap" ?
                                                     <div className="accessr-size pull-right">
                                                         Select Size
-                                                        <div title="Small Size" className="accessr-small">S</div>
-                                                        <div title="Medium Size" className="accessr-med">M</div>
-                                                        <div title="Large Size" className="accessr-large">L</div>
+                                                        <div title="Small Size" className={this.state.selectedId == data._id && this.state.strapSize == 'Small' ? "accessr-small access-size-selected" : "accessr-small"} onClick={()=>this.setStrapSize('Small', data._id)}>S</div>
+                                                        <div title="Medium Size" className={this.state.selectedId == data._id && this.state.strapSize == 'Medium' ? "accessr-med access-size-selected" : "accessr-med"} onClick={()=>this.setStrapSize('Medium', data._id)}>M</div>
+                                                        <div title="Large Size" className={this.state.selectedId == data._id && this.state.strapSize == 'Large' ? "accessr-large access-size-selected" : "accessr-large"} onClick={()=>this.setStrapSize('Large', data._id)}>L</div>
                                                     </div>
                                                     :
                                                     null
                                             }
                                             <div className="accessr-text">{data.baseType == "strap" ? data.strapName : data.accessoryName}</div>
-                                            <div className="accessr-buy">BUY</div>
+                                            <div className="accessr-buy" onClick={()=>this.buyAccessory(data, data._id)}>BUY</div>
                                         </div>
                                     </div>
                                 </div>

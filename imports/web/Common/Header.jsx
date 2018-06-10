@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
 import { Roles } from 'meteor/alanning:roles';
+import { UserCart } from '/imports/api/UserCart.js';
 
 
 class Header extends Component {
@@ -203,7 +204,7 @@ class Header extends Component {
               {
                 this.props.userId ?
                   <Link to="/cart" className="navbar-text guitar-header-cart">
-                    Cart <span className="guitar-cart-count" >1</span>
+                    Cart <span className="guitar-cart-count" >{this.props.currentCartCount}</span>
                   </Link>
                   :
                   null
@@ -324,11 +325,14 @@ class Header extends Component {
 }
 
 export default withTracker(() => {
+  var pubHandle = Meteor.subscribe('cartpublish');
   const userId = Meteor.userId();
   var role = Roles.userIsInRole(userId, 'admin');
+  var currentCartCount = UserCart.find({"userId":userId}).count();
 
   return {
     userId : userId,
     adminRole : role,
+    currentCartCount : currentCartCount,
   };
 })(Header);

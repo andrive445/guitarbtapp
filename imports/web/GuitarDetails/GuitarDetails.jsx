@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AccessoriesBox from '/imports/web/Accessories/AccessoriesBox.jsx';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
+import Swal from 'sweetalert2';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Guitar } from '/imports/api/Guitar.js';
@@ -9,9 +10,38 @@ import { Guitar } from '/imports/api/Guitar.js';
 class GuitarDetails extends Component {
     constructor(props){
         super(props);
+        this.buyGuitar = this.buyGuitar.bind(this);
     }
     componentWillMount(){
         window.scrollTo(0, 0);
+    }
+
+    buyGuitar = ()=>{
+        var userId = Meteor.userId();
+        if(userId){
+            var guitarData = this.props.guitarData;
+            Meteor.call('addToCart', guitarData, (error, result)=>{
+                if(result && result != 'old'){
+                    Swal({
+                        position: 'center',
+                        type: 'success',
+                        title: 'Added to Cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                } else if(result == 'old'){
+                    Swal({
+                        position: 'center',
+                        type: 'warning',
+                        title: 'Already Added to Cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            });
+        }else{
+              $("#guitarLogin").modal("show");
+        }
     }
 
     render(){
@@ -50,7 +80,7 @@ class GuitarDetails extends Component {
                                         </div>
                                         {
                                             this.props.guitarData.status == "unsold" ?
-                                                <div className="guitar-d-buy">BUY NOW</div>
+                                                <div className="guitar-d-buy" onClick={this.buyGuitar}>BUY NOW</div>
                                                 :
                                                 null
                                         }
