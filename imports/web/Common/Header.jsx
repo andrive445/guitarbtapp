@@ -45,20 +45,30 @@ class Header extends Component {
     if(email.match(pattern) !=null){
       Meteor.loginWithPassword(email, password, (error)=>{
         console.log('error: ', error);
-        // console.log('result: ', result);
-        this.state = {
-          loginState : true,
-          userloginEmail :"",
-          userLoginPassward: "",
+        if(error && error.error == 403){
+           Swal({
+              position: 'center',
+              type: 'warning',
+              title: error.reason,
+              showConfirmButton: false,
+              timer: 1500
+            })
+        } else {
+          this.state = {
+            loginState : true,
+            userloginEmail :"",
+            userLoginPassward: "",
+          }
+          Swal({
+            position: 'center',
+            type: 'success',
+            title: 'Login Successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $("#guitarLogin").modal("hide");
         }
-        Swal({
-          position: 'center',
-          type: 'success',
-          title: 'Login Successfully',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        $("#guitarLogin").modal("hide");
+        
       });
     }else{
       Swal({
